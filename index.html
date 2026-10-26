@@ -89,42 +89,33 @@
     <span class="orn-gem">❊</span>
     <div class="orn-line"></div>
   </div>
-  <div class="families-cols">
-    <div class="family-col sf d1">
-      <h4>Bride's Family</h4>
-      <div class="fam-person">
-        <p class="fam-name">Mr. &amp; Mrs. Jahangir Bakht</p>
-        <p class="fam-role">Parents of the Bride</p>
-      </div>
+  <div class="families-list">
+    <p class="fam-group-header sf">Bride's Family</p>
+    <div class="fam-row sf d1">
+      <p class="fam-name">Mr. &amp; Mrs. Jahangir Bakht</p>
+      <p class="fam-role">Parents of the Bride</p>
     </div>
-    <div class="family-col sf d1">
-      <h4>Bride's Family</h4>
-      <div class="fam-person">
-        <p class="fam-name">Mr. &amp; Mrs. Kamran Bakht</p>
-        <p class="fam-role">Brother of the Bride</p>
-      </div>
+    <div class="fam-row sf d2">
+      <p class="fam-name">Mr. &amp; Mrs. Kamran Bakht</p>
+      <p class="fam-role">Brother of the Bride</p>
     </div>
-    <div class="family-col sf d1">
-      <h4>Bride's Family</h4>
-      <div class="fam-person">
-        <p class="fam-name">Mr. &amp; Mrs. Ali Bakht</p>
-        <p class="fam-role">Brother of the Bride</p>
-      </div>
+    <div class="fam-row sf d3">
+      <p class="fam-name">Mr. &amp; Mrs. Ali Bakht</p>
+      <p class="fam-role">Brother of the Bride</p>
     </div>
-     <div class="family-col sf d1">
-      <h4>Bride's Family</h4>
-      <div class="fam-person">
-        <p class="fam-name">Mr. Fahad Bakht</p>
-        <p class="fam-role">Brother of the Bride</p>
-      </div>
+    <div class="fam-row sf d4">
+      <p class="fam-name">Mr. Fahad Bakht</p>
+      <p class="fam-role">Brother of the Bride</p>
     </div>
-    <div class="family-col sf d1">
-      <h4>Bride's Family</h4>
-      <div class="fam-person">
-        <p class="fam-name">Mr. &amp; Mrs. Khalil Ahmed</p>
-        <p class="fam-role">Sister and Sister in Law of the Bride</p>
-      </div>
+    <div class="fam-row sf d5">
+      <p class="fam-name">Mr. &amp; Mrs. Khalil Ahmed</p>
+      <p class="fam-role">Sister &amp; Brother in Law of the Bride</p>
     </div>
+     <div class="fam-row sf d5">
+      <p class="fam-name">Suhaymah and Umaiza</p>
+      <p class="fam-role">Niece of the Bride (Bride Made)</p>
+    </div>
+  </div>
 </section>
 
 
@@ -251,6 +242,18 @@
     <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </div>
+
+<button class="music-btn" id="musicBtn" aria-label="Toggle music">
+  <!-- playing -->
+  <svg class="music-btn-on" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+    <path d="M9 3v12.26A3.5 3.5 0 1 0 11 18V7h6V3H9z"/>
+  </svg>
+  <!-- paused -->
+  <svg class="music-btn-off" viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
+    <path d="M9 3v12.26A3.5 3.5 0 1 0 11 18V7h6V3H9z" opacity=".35"/>
+    <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+  </svg>
+</button>
 
 <script src="js/app.js"></script>
 </body>
