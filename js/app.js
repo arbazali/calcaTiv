@@ -12,6 +12,24 @@
   const sealBtn      = document.getElementById('gateOpen');
   const gateTap      = document.getElementById('gateTap');
   const gatePetalsEl = document.getElementById('gatePetals');
+  const flapImg      = document.querySelector('.env-flap');
+
+  /* ── Seal + tap-hint position — both anchored to flap bottom edge ── */
+  function positionSeal() {
+    if (!flapImg || !sealBtn) return;
+    if (!flapImg.complete || !flapImg.naturalHeight) return;
+    const flapBottom = flapImg.offsetHeight;
+    sealBtn.style.top = flapBottom + 'px';
+    if (gateTap) {
+      gateTap.style.top = (flapBottom + sealBtn.offsetHeight / 2 + 14) + 'px';
+      gateTap.style.transform = 'translateX(-50%)';
+    }
+  }
+  if (flapImg) {
+    flapImg.addEventListener('load', positionSeal, { once: true });
+    positionSeal();
+  }
+  window.addEventListener('resize', positionSeal);
 
   /* ══════════════════════════════════════════
      PETALS
@@ -51,9 +69,40 @@
   ══════════════════════════════════════════ */
   let opened = false;
 
+  const bgMusic  = new Audio('img/backmusic.mp3');
+  bgMusic.loop   = true;
+  bgMusic.volume = 0.5;
+
+  const musicBtn = document.getElementById('musicBtn');
+
+  function setMusicIcon(playing) {
+    musicBtn.classList.toggle('is-paused', !playing);
+  }
+
+  musicBtn.addEventListener('click', () => {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(() => {});
+      setMusicIcon(true);
+    } else {
+      bgMusic.pause();
+      setMusicIcon(false);
+    }
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      bgMusic.pause();
+    } else if (opened && !musicBtn.classList.contains('is-paused')) {
+      bgMusic.play().catch(() => {});
+    }
+  });
+
   function openEnvelope() {
     if (opened) return;
     opened = true;
+
+    bgMusic.play().catch(() => {});
+    setMusicIcon(true);
 
     clearInterval(gatePetalTimer);
 
@@ -64,6 +113,7 @@
       gatePetalsEl.innerHTML = '';
       gate.classList.add('is-gone');
       burstMainPetals();
+      setTimeout(() => musicBtn.classList.add('is-visible'), 950);
     }, 2000);
   }
 
