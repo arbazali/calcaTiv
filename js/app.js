@@ -213,13 +213,20 @@
       setTimeout(() => { csLocked = false; }, 850);
     }
 
+    let isLeavingForward  = false;
+    let isLeavingBackward = false;
+
     function csGoNext() {
       const next = csSec.nextElementSibling;
-      if (next) next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!next) return;
+      isLeavingForward = true;
+      next.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     function csGoPrev() {
       const prev = csSec.previousElementSibling;
-      if (prev) prev.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!prev) return;
+      isLeavingBackward = true;
+      prev.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     /* wheel */
@@ -267,6 +274,11 @@
     new IntersectionObserver((entries) => {
       const entry = entries[0];
       if (!entry.isIntersecting) {
+        if (isLeavingForward || isLeavingBackward) {
+          isLeavingForward  = false;
+          isLeavingBackward = false;
+          return;
+        }
         csSetInstant(0);
       } else if (entry.boundingClientRect.top < -10) {
         // entering from below (scrolling up from next section) → show panel 3
