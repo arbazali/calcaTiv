@@ -247,8 +247,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .ev-sec,
 .closing-sec {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
-  min-height: 100svh;
+  min-height: 100dvh;
 }
 
 
@@ -258,7 +257,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .cover {
   position: relative;
   isolation: isolate;
-  min-height: 100svh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -436,7 +435,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 ══════════════════════════════════════════════ */
 .countdown-sec {
   position: relative;
-  height: 100svh;
+  height: 100dvh;
   overflow: hidden;
   isolation: isolate;
 }
@@ -658,7 +657,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 ══════════════════════════════════════════════ */
 .greeting-sec {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
   overflow: hidden;
   isolation: isolate;
 }
@@ -815,7 +814,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 ══════════════════════════════════════════════ */
 .couple-sec {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
   overflow: hidden;
   isolation: isolate;
   scroll-snap-align: start;
@@ -932,42 +931,67 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 /* ══════════════════════════════════════════════
    FAMILIES
 ══════════════════════════════════════════════ */
-.families-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  max-width: 380px;
+.families-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 90%;
+  max-width: 420px;
   margin: 0 auto;
 }
 
-.family-col {
-  background: rgba(92,15,28,.2);
-  border: 1px solid rgba(205,164,94,.11);
-  border-radius: 10px;
-  padding: 18px 14px;
-  text-align: center;
-}
-
-.family-col h4 {
+.fam-group-header {
   font-size: .62rem;
   letter-spacing: .24em;
   text-transform: uppercase;
-  color: #fbfbfb;
-  opacity: .75;
-  margin-bottom: 14px;
+  color: var(--goldorg);
+  opacity: .55;
   font-weight: 400;
+  text-align: center;
+  margin-bottom: 4px;
 }
 
-.fam-person {
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(205,164,94,.07);
+.fam-row {
+  padding: 11px 16px;
+  background: rgba(92,15,28,.2);
+  border: 1px solid rgba(205,164,94,.11);
+  border-radius: 8px;
 }
-.fam-person:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
 
-.fam-name  { font-size:.9rem; color:var(--creamorg); font-weight:500; line-height:1.35; }
-.fam-role  { font-size:.65rem; color:var(--goldorg); opacity:.62; margin-top:2px; letter-spacing:.04em; }
+.fam-name  { font-size:.88rem; color:var(--creamorg); font-weight:500; line-height:1.3; display:block; }
+.fam-role  { font-size:.62rem; color:var(--goldorg); opacity:.65; letter-spacing:.04em; margin-top:3px; display:block; }
 .fam-tel   { display:inline-block; font-size:.66rem; color:var(--goldorgd); margin-top:4px; opacity:.78; border-bottom:1px solid rgba(255, 255, 255, 0.28); }
+
+
+/* ══════════════════════════════════════════════
+   MUSIC BUTTON
+══════════════════════════════════════════════ */
+.music-btn {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(26,5,8,.55);
+  border: 1px solid rgba(205,164,94,.32);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  color: var(--goldorg);
+  cursor: pointer;
+  transition: opacity .2s, transform .15s;
+  opacity: 0;
+  pointer-events: none;
+}
+.music-btn.is-visible { opacity: .9; pointer-events: auto; }
+.music-btn:active { transform: scale(.9); }
+
+.music-btn-off { display: none; }
+.music-btn.is-paused .music-btn-on  { display: none; }
+.music-btn.is-paused .music-btn-off { display: block; }
 
 
 /* ══════════════════════════════════════════════
@@ -1225,7 +1249,6 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   .cover-name    { font-size:3.7rem; }
   .cd-num        { font-size:2.2rem; }
   .cd-cell       { min-width:58px;   }
-  .families-cols { grid-template-columns:1fr; }
   .ev-meta       { grid-template-columns:1fr; }
   .dress-chip    { width:calc(50% - 6px); }
 }
